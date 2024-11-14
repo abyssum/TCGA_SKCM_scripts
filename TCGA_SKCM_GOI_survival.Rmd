@@ -32,3 +32,34 @@ mappings <- read.csv("/home/fotakis/myScratch/projects/Sophie_Patti/gdc_sample_s
                      header = T,
                      sep = "\t")
 ```
+
+Functions
+
+```{r}
+# Function to clean upthe column names
+clean_column_names <- function(df) {
+  # Apply the cleaning process to all column names
+  colnames(df) <- gsub("^[X]", "", colnames(df)) # Remove first "X" if present - this is a Python artifact from pre-processing
+  colnames(df) <- gsub("\\.", "-", colnames(df))  # Replace "." with "-"
+  
+  return(df)
+}
+
+# Function to clean up empty columns
+remove_empty_columns <- function(df) {
+  # Check for columns where all entries are "--"
+  cols_to_keep <- sapply(df, function(col) {
+    !all(col == "'--")
+  })
+  
+  # Subset the dataframe to keep only the relevant columns
+  df_cleaned <- df[, cols_to_keep]
+  
+  return(df_cleaned)
+}
+
+```
+
+
+
+
