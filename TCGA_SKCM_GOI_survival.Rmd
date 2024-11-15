@@ -132,3 +132,12 @@ surv_cut <- surv_cutpoint(
 )
 summary(surv_cut)
 ```
+
+Create the dummy variables for the survival model
+
+```{r}
+# Create fsctorial vars (high/low) and fit the survival model
+clinical.final$GOI.exp <- factor(ifelse(clinical.final[[goi]] > summary(surv_cut)[1, 1], "high", "low"))
+```
+
+
