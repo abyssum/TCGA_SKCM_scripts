@@ -140,4 +140,13 @@ Create the dummy variables for the survival model
 clinical.final$GOI.exp <- factor(ifelse(clinical.final[[goi]] > summary(surv_cut)[1, 1], "high", "low"))
 ```
 
+Fit the survival model to the data
+
+```{r}
+fit <- survfit(Surv(time = OS.time.years ,event =  OS) ~ GOI.exp, data = clinical.final)
+```
+
+
+
+
 
