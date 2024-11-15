@@ -120,3 +120,15 @@ clinical.dedup <- unique(clinical[ , c(1, 2, 36, 37, 38)])
 clinical.final <- merge(goi.final, clinical.dedup, by = "case_submitter_id")
 ```
 
+Compute optimal cutpoint
+
+```{r}
+# Define the cutpoint - to be used for the ranking: high/low
+surv_cut <- surv_cutpoint(
+  clinical.final,
+  time = "OS.time.years",
+  event = "OS",
+  variables = c(goi)
+)
+summary(surv_cut)
+```
