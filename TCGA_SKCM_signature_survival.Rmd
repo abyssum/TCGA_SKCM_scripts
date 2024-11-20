@@ -1,0 +1,19 @@
+---
+title: "TCGA SKCM gene signature survival"
+author: "Georgios Fotakis"
+date: "2024-11-20"
+output: html_document
+---
+
+Load libraries
+
+```{r include=FALSE}
+library(survival)
+library(survminer)
+library(dplyr)
+library(GSVA)
+library(tidyr)
+library(conflicted)
+conflict_prefer("select", "dplyr")
+```
+
