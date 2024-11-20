@@ -17,3 +17,18 @@ library(conflicted)
 conflict_prefer("select", "dplyr")
 ```
 
+Load in the data
+
+```{r}
+clinical <- read.csv2("/home/fotakis/myScratch/projects/Sophie_Patti/clinical/clinical.tsv",
+                      header = T,
+                      sep = "\t")
+
+expression.clean <- read.csv2("/home/fotakis/myScratch/projects/Sophie_Patti/counts_total/SKCM_TPM.tsv",
+                              header = T,
+                              sep = "\t")
+
+mappings <- read.csv("/home/fotakis/myScratch/projects/Sophie_Patti/gdc_sample_sheet.2024-10-14.tsv",
+                     header = T,
+                     sep = "\t")
+```
