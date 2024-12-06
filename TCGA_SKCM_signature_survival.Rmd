@@ -58,3 +58,10 @@ remove_empty_columns <- function(df) {
   return(df_cleaned)
 }
 ```
+
+# Data harmonization
+
+```{r}
+expression.clean <- clean_column_names(expression.clean)
+clinical <- remove_empty_columns(clinical)
+```
