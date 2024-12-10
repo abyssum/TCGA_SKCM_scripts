@@ -72,3 +72,15 @@ mappings <- mappings %>%
   mutate(File.Name = gsub(".rna_seq.augmented_star_gene_counts.tsv", "", File.Name)) %>%
   select(2, 6)
 ```
+
+```{r}
+# Create dummy variables for survival analysis and calculate OS.time
+clinical <- clinical %>%
+  mutate(
+    OS = ifelse(vital_status == "Dead", 1, 0),
+    OS.time = ifelse(days_to_death != "'--", days_to_death, days_to_last_follow_up),
+    OS.time = ifelse(OS.time == "'--", NA, as.numeric(OS.time)),
+    OS.time.years = OS.time / 365
+  ) %>%
+  drop_na(OS.time)
+```
