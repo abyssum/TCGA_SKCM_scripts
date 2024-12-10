@@ -93,3 +93,8 @@ expression.clean <- expression.clean %>%
   as.matrix() %>%
   `rownames<-`(gene.names)
 ```
+
+```{r}
+# Convert to matrix - required by GSVA
+class(expression.clean) <- "numeric"
+```
