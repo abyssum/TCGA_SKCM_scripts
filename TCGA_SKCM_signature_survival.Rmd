@@ -65,3 +65,10 @@ remove_empty_columns <- function(df) {
 expression.clean <- clean_column_names(expression.clean)
 clinical <- remove_empty_columns(clinical)
 ```
+
+```{r}
+# Keep only the sample name from the file names
+mappings <- mappings %>%
+  mutate(File.Name = gsub(".rna_seq.augmented_star_gene_counts.tsv", "", File.Name)) %>%
+  select(2, 6)
+```
