@@ -84,3 +84,12 @@ clinical <- clinical %>%
   ) %>%
   drop_na(OS.time)
 ```
+
+```{r}
+# Clean up the expression data and set gene symbols as row names
+gene.names <- expression.clean$gene_name
+expression.clean <- expression.clean %>%
+  select(-gene_name) %>%
+  as.matrix() %>%
+  `rownames<-`(gene.names)
+```
