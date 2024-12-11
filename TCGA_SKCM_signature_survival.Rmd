@@ -106,3 +106,11 @@ Genes of Interest (GOIs) list
 goi <- list(c('OLR1', 'HILPDA'),
             c('IL1A', 'CCL20', 'ERI2'))
 ```
+
+```{r}
+# Define the names of the GOI groups (the groups should be equal to the GOIs defined above)
+sig_names <- c("GOIs_1", 
+               "GOIs_2")
+```
+
+
