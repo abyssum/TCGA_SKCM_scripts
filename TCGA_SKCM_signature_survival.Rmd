@@ -113,4 +113,9 @@ sig_names <- c("GOIs_1",
                "GOIs_2")
 ```
 
+```{r}
+# Name the GOIs list per grouping name (see above)
+names(goi) <- sig_names
+```
+
 
