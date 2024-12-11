@@ -98,3 +98,11 @@ expression.clean <- expression.clean %>%
 # Convert to matrix - required by GSVA
 class(expression.clean) <- "numeric"
 ```
+
+Genes of Interest (GOIs) list
+
+```{r}
+# Define the list of genes of interest (GOIs)
+goi <- list(c('OLR1', 'HILPDA'),
+            c('IL1A', 'CCL20', 'ERI2'))
+```
