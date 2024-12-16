@@ -128,5 +128,15 @@ res <- as.data.frame(t(gsva.res), stringsAsFactors = FALSE)
 res$File.Name<- rownames(res)
 ```
 
+sanitise GSVA results
+
+```{r}
+# merge gois with mappings to allow integration with clinical data
+gsva.final <- merge(mappings, res, by = "File.Name")
+
+# rename case id col - allows merging
+names(gsva.final)[names(gsva.final) == 'Case.ID'] <- 'case_submitter_id'
+```
+
 
 
