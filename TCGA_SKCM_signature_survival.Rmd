@@ -118,4 +118,15 @@ sig_names <- c("GOIs_1",
 names(goi) <- sig_names
 ```
 
+GSVA
+
+```{r}
+# Run the GSVA and transpose the results for easier processing - NEW
+gsvaPar <- gsvaParam(expression.clean, goi)
+gsva.res <- gsva(gsvaPar, verbose=FALSE)
+res <- as.data.frame(t(gsva.res), stringsAsFactors = FALSE)
+res$File.Name<- rownames(res)
+```
+
+
 
