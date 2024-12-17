@@ -118,7 +118,7 @@ sig_names <- c("GOIs_1",
 names(goi) <- sig_names
 ```
 
-GSVA
+Run GSVA
 
 ```{r}
 # Run the GSVA and transpose the results for easier processing - NEW
@@ -128,7 +128,7 @@ res <- as.data.frame(t(gsva.res), stringsAsFactors = FALSE)
 res$File.Name<- rownames(res)
 ```
 
-sanitise GSVA results
+Sanitize GSVA results
 
 ```{r}
 # merge gois with mappings to allow integration with clinical data
@@ -138,5 +138,11 @@ gsva.final <- merge(mappings, res, by = "File.Name")
 names(gsva.final)[names(gsva.final) == 'Case.ID'] <- 'case_submitter_id'
 ```
 
+Join GSVA results with clinical data
 
+```{r}
+# de-duplicate ckinical
+clinical.dedup <- unique(clinical[ , c(1, 2, 36, 37, 38)])
 
+clinical.final <- merge(gsva.final, clinical.dedup, by = "case_submitter_id")
+```
