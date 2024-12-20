@@ -146,3 +146,17 @@ clinical.dedup <- unique(clinical[ , c(1, 2, 36, 37, 38)])
 
 clinical.final <- merge(gsva.final, clinical.dedup, by = "case_submitter_id")
 ```
+
+Find optimal cutpoints for the survival analysis
+
+```{r}
+# Define the cutpoint - to be used for the ranking: high/low
+surv_cut <- surv_cutpoint(
+  clinical.final,
+  time = "OS.time",
+  event = "OS",
+  variables = sig_names
+)
+# Check the results
+summary(surv_cut)
+```
