@@ -160,3 +160,20 @@ surv_cut <- surv_cutpoint(
 # Check the results
 summary(surv_cut)
 ```
+
+Initialize variables for the ploting loop
+
+```{r}
+# Initialize a counter (to be used in the loop below)
+counter <- 1
+
+# add method to grid.draw (needed for serialized rendering of the plots - causes error otherwise)
+grid.draw.ggsurvplot <- function(x){
+  survminer:::print.ggsurvplot(x, newpage = FALSE)
+}
+
+# Define an output path
+out_path <- "/home/fotakis/myScratch/projects/Sophie_Patti/figures/"
+```
+
+
