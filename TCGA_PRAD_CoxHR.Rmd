@@ -59,3 +59,26 @@ remove_empty_columns <- function(df) {
   return(df_cleaned)
 }
 ```
+
+Data harmonization
+
+```{r}
+# Data harmonization
+expression.clean <- clean_column_names(expression.clean)
+clinical <- remove_empty_columns(clinical)
+
+# Keep only the sample name from the file names
+mappings <- mappings %>%
+  mutate(File.Name = gsub(".rna_seq.augmented_star_gene_counts.tsv", "", File.Name)) %>%
+  select(2, 6)
+
+# Create dummy variables for survival analysis and calculate OS.time
+clinical <- clinical %>%
+  mutate(
+    OS = ifelse(vital_status == "Dead", 1, 0),
+    OS.time = ifelse(days_to_death != "'--", days_to_death, days_to_last_follow_up),
+    OS.time = ifelse(OS.time == "'--", NA, as.numeric(OS.time)),
+    OS.time.years = OS.time / 365
+  ) %>%
+  drop_na(OS.time)
+```
