@@ -71,7 +71,11 @@ clinical <- remove_empty_columns(clinical)
 mappings <- mappings %>%
   mutate(File.Name = gsub(".rna_seq.augmented_star_gene_counts.tsv", "", File.Name)) %>%
   select(2, 6)
+```
 
+Dummy variables - OS
+
+```{r}
 # Create dummy variables for survival analysis and calculate OS.time
 clinical <- clinical %>%
   mutate(
@@ -82,3 +86,5 @@ clinical <- clinical %>%
   ) %>%
   drop_na(OS.time)
 ```
+
+
