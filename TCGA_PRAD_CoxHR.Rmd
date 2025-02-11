@@ -87,4 +87,18 @@ clinical <- clinical %>%
   drop_na(OS.time)
 ```
 
+Dummy variables - PFS
 
+```{r}
+# Create dummy variables for survival analysis and calculate OS.time
+clinical <- clinical %>%
+  mutate(
+    PFS = ifelse(biochemical_recurrence == "YES", 1, 0),
+    PFS = ifelse(is.na(PFS), 0, PFS),
+    PFS = ifelse(OS == 1, 1, PFS),
+    PFS.time = ifelse(is.na(days_to_first_biochemical_recurrence), days_to_last_follow_up, days_to_first_biochemical_recurrence),
+    PFS.time = ifelse(OS == 1, OS.time, as.numeric(PFS.time)),
+    PFS.time.years = PFS.time / 365
+  ) %>%
+  drop_na(PFS.time)
+```
