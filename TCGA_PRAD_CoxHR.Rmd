@@ -102,3 +102,15 @@ clinical <- clinical %>%
   ) %>%
   drop_na(PFS.time)
 ```
+
+Map caseID to filename
+
+```{r}
+# Map the case IDs to file names
+map_temp <- unique(mappings)
+names(map_temp)[names(map_temp) == 'Case.ID'] <- 'case_submitter_id'
+file.names.df <- merge(clinical, map_temp, by = "case_submitter_id", all.x = TRUE)
+file.names.df <- subset(file.names.df, !is.na(File.Name))
+
+```
+
