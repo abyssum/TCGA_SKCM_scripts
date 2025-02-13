@@ -115,6 +115,15 @@ file.names.df <- subset(file.names.df, !is.na(File.Name))
 
 # Vector of column names to remove
 columns_to_keep <- c(file.names.df$File.Name)
+
+# Vector of column names to remove
+columns_to_keep <- c(file.names.df$File.Name)
+
+# Keep gene names to name the rows
+gene.names <- expression.clean$gene_name
+
+# Remove columns with names in the vector
+expression.clean <- expression.clean[, intersect(names(expression.clean), columns_to_keep)]
 ```
 
 
