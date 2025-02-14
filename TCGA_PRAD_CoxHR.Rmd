@@ -124,6 +124,10 @@ gene.names <- expression.clean$gene_name
 
 # Remove columns with names in the vector
 expression.clean <- expression.clean[, intersect(names(expression.clean), columns_to_keep)]
+
+# Find duplicate rows (including all occurrences)
+duplicates <- file.names.df[file.names.df$case_submitter_id %in% file.names.df$case_submitter_id[duplicated(file.names.df$case_submitter_id)], ]
+
 ```
 
 
