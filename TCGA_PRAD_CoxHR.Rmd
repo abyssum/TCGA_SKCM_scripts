@@ -90,7 +90,7 @@ clinical <- clinical %>%
 Dummy variables - PFS
 
 ```{r}
-# Create dummy variables for survival analysis and calculate OS.time
+# Create dummy variables for survival analysis and calculate PFS.time
 clinical <- clinical %>%
   mutate(
     PFS = ifelse(biochemical_recurrence == "YES", 1, 0),
